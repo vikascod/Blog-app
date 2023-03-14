@@ -35,7 +35,10 @@ Posted on:{{ post.created_on }}
                     {% if post.author.profile %}
                     <a href="{% url 'show_profile' post.author.profile.id %}">View profile</a>
                     {% else %}
-                    <a href="{% url 'create_user_profile' %}">Create Profile</a>
+                        
+                        {% if user.id == post.author.id %}
+                            <a href="{% url 'create_user_profile' %}">Create Profile</a>
+                        {% endif %}
                     {% endif %}
                 </h5>
                 <p class="card-text">{{ post.author.profile.bio }}</p>
