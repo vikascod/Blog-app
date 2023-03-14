@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+<h1 class="text-center">Blogs</h1>
+
+{% for blog in blogs %}
+<div class="card mt-4">
+    <div class="card-header">
+        <a href="{% url 'detail' blog.pk %}"><strong>{{ blog.author }}</strong></a>
+    </div>
+    <div class="card-body">
+      <h6 class="card-title"><strong>{{ blog.title }}</strong></h6> <br>
+      {% if blog.image %}
+        <img src="{{ blog.image.url }}" alt="" width="150" height="200">
+      {% else %} 
+        <p>No Image</p>
+      {% endif %}
+      
+      <p class="card-text">{{ blog.body|slice:":200"|safe }}</p>
+      <a href="{% url 'detail' blog.pk %}" class="btn btn-secondary btn-sm">View</a>
+    </div>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}
+
+

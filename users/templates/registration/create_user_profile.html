@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %} 
+{% load static %}
+
+{% block content %}
+<h1 class="text-center">Create Profile</h1>
+<hr />
+
+{% if user.is_authenticated %} {% if not user.profile %}
+<div class="form-group">
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %} {{ form.media }} {{ form.as_p }}
+    <input type="submit" class="btn btn-secondary" value="Post" />
+  </form>
+</div>
+
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+    <br />
+    <a href="{% url 'register' %}">Create an account?</a>
+{% endif %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <h1 class="text-center">Profile Update</h1>
+    <hr>
+<br><br>
+
+{{ user.profile.bio }}
+<br>
+<div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-secondary" value="Save">
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'app/base.html' %} 
+{% load static %}
+
+{% block title %} Detail Page {% endblock %}
+
+
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<b>By: {{ post.author.username }} {{ post.author.last_name }} </b>
+<br />
+Category : {{post.category }}
+<br />
+Posted on:{{ post.created_on }} 
+{% if user.is_authenticated %} 
+    {% if user.id == post.author.id %} -
+        <a href="{% url 'update_post' post.pk %}">Edit</a> -
+        <a href="{% url 'delete_post' post.pk %}">Delete</a>
+    {% endif %} 
+{% endif %}
+<br /><br />
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.profile.profile_pic.url }}" class="img-fluid rounded-start" width="200" height="200" alt="..." />
+            {% else %}
+                <img src="{% static 'images/user1.png' %}" class="img-fluid rounded-start" alt="..." />
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ post.author.first_name }} {{ post.author.last_name }} |
+                    {% if post.author.profile %}
+                    <a href="{% url 'show_profile' post.author.profile.id %}">View profile</a>
+                    {% else %}
+                    <a href="{% url 'create_user_profile' %}">Create Profile</a>
+                    {% endif %}
+                </h5>
+                <p class="card-text">{{ post.author.profile.bio }}</p>
+                <p class="card-text">
+                    <small class="small text-muted">
+                        
+                        {% if post.author.profile.facebook_url %}
+                            <a href="{{ post.author.profile.facebook_url }}">Facebook</a> 
+                        {% endif %}
+                        {% if post.author.profile.insta_url %}
+                            | <a href="{{ post.author.profile.insta_url }}">Instagram</a> 
+                        {% endif %}
+                        {% if post.author.profile.linkedin_url %}
+                            | <a href="{{ post.author.profile.linkedin_url }}">LinkedIn</a> 
+                        {% endif %}
+                        {% if post.author.profile.github_url %}
+                            | <a href="{{ post.author.profile.github_url }}">Github</a>
+                        {% endif %}
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+<br />
+{% if post.image %}
+<img src="{{ post.image.url }}" width="150" height="200" alt="" />
+{% endif %}
+<br /><br />
+{{ post.body|safe }}
+
+
+<hr/>
+
+
+<form action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %} {% if user.is_authenticated %} {% if liked %}
+    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-warning btn-sm">
+        Unlike
+    </button>
+    {% else %}
+    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">
+        Like
+    </button>
+    {% endif %} {% else %}
+    <small>Login to like</small>
+    {% endif %} - {{total_like}} Likes
+</form>
+<br /><br />
+
+<div>
+    <h1>Comments...</h1>
+    <br>
+    
+    {% if not post.comments.all %}
+        No Comment yet!!
+        <a href="{% url 'comment' post.pk %}">Add Commnet</a>
+        <br>
+        <br>
+        {% else %}
+        <a href="{% url 'comment' post.pk %}">Add Comment</a> <br>
+        {% for comment in post.comments.all %}
+            <strong>
+                {{ comment.name }} - 
+                {{ comment.created_on }}
+            </strong>
+            <br>
+            
+            {{ comment.body }}
+            <br>
+            <br>
+        {% endfor %}
+    {% endif %}
+    
+</div>
+
+{% endblock %}

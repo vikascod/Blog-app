@@ -1,0 +1,23 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+    <h1 class="text-center">Delete Post </h1>
+    <hr>
+    <h3>Delete : {{ post.title }}</h3>
+<div class="form-group">
+    <form action="" method="post">
+        {% csrf_token %}
+        <h6>Are you sure?</h6>
+        <input type="submit" class="btn btn-warning" value="Delete">
+    </form>
+</div>
+{% else %}
+<h3>Not authorized to perform actions</h3>
+{% endif %}
+{% else %}
+<h3>Not authorized to perform actions</h3>
+{% endif %}
+{% endblock %}

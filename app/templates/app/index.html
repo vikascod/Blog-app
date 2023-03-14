@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+<h1 class="text-center">Blogs</h1>
+
+{% for post in object_list %}
+<div class="card mt-4">
+    <div class="card-header">
+        <a href="{% url 'detail' post.pk %}"><strong>{{ post.author }}</strong></a> - {{ post.created_on }}
+    </div>
+    <div class="card-body">
+      <h6 class="card-title"><strong>{{ post.title }}</strong></h6> <br>
+      {% if post.image %}
+        <img src="{{ post.image.url }}" alt="" width="150" height="200">
+      {% else %} 
+        <p>No Image</p>
+      {% endif %}
+      
+      <p class="card-text">{{ post.body|slice:":200"|safe }}</p>
+      <a href="{% url 'detail' post.pk %}" class="btn btn-success btn-sm">View ...</a>
+    </div>
+</div>
+{% endfor %}
+
+
+
+{% endblock %}
+
+
