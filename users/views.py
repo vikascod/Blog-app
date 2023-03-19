@@ -5,7 +5,7 @@ from users.forms import SignupForm, ProfileEditForm, ManualChangePasswordForm, C
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from app.models import Profile
-
+from django.views import View
 
 
 class CreateProfileView(CreateView):
@@ -59,3 +59,7 @@ class ProfileEditView(UpdateView):
 class ChangePassword1View(PasswordChangeView):
     form_class = ManualChangePasswordForm
     success_url = reverse_lazy('password_changed')
+
+
+def aboutView(request):
+    return render(request, 'registration/about.html')
