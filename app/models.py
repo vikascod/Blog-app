@@ -33,7 +33,6 @@ class Post(models.Model):
     # body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=200, default='Artical')
-    snippet = models.CharField(max_length=200, default='Click here for read ...')
     likes = models.ManyToManyField(User, related_name='blog_post')
 
     def total_likes(self):
@@ -48,7 +47,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=300)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
 
