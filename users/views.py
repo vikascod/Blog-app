@@ -7,6 +7,8 @@ from django.contrib.auth.views import PasswordChangeView
 from app.models import Profile
 from django.views import View
 
+from django_ratelimit.decorators import ratelimit
+
 
 class CreateProfileView(CreateView):
     model = Profile
@@ -36,6 +38,8 @@ class ShowProfileView(DetailView):
         context['profile_user'] = profile_user
         return context
 
+@ratelimit(key='post:username', rate='2/m')
+@ratelimit(key='post:tenant', rate='2/m')
 def change_password(request):
     return render(request, 'registration/password_success.html')
 
@@ -52,8 +56,10 @@ class ProfileEditView(UpdateView):
     success_url = reverse_lazy('index')
 
     #this func helps to return data
+    @ratelimit(key='post:q', rate='2/m')
     def get_object(self):
         return self.request.user
+
 
 
 class ChangePassword1View(PasswordChangeView):

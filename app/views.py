@@ -7,6 +7,42 @@ from django.http import HttpResponseRedirect
 from django.views import View
 from django.db.models import Q
 
+from django.conf import settings
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+
+from django_ratelimit.decorators import ratelimit
+
+
+CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
+
+
+class IndexView(ListView):
+    model = Post
+    context_object_name = 'blogs'
+    template_name = 'app/index.html'
+    ordering = ['-created_on']
+
+    @method_decorator(cache_page(CACHE_TTL))
+    def dispatch(self, request, *args, **kwargs):
+        # Get the cached content if available
+        key = f"IndexView-{request.get_full_path()}"
+        response = cache.get(key)
+        
+        if response is None:
+            # If the content is not in the cache, call the parent dispatch method to generate it
+            response = super().dispatch(request, *args, **kwargs)
+            response.render()
+            # Store the generated content in the cache
+            cache.set(key, response.content, CACHE_TTL)
+            print("Data comming from db")
+        else:
+            print("Data comming from cache")
+        return response
+
+
 
 def likeView(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
@@ -19,12 +55,6 @@ def likeView(request, pk):
         liked = True
     return HttpResponseRedirect(reverse('detail', args=[str(pk)]))
 
-
-class IndexView(ListView):
-    model = Post
-    # context_object_name
-    template_name = 'app/index.html'
-    ordering = ['-created_on']
 
 
 def categoryView(request, cats):
@@ -88,6 +118,8 @@ class DeletePostView(DeleteView):
     success_url = reverse_lazy('index')
 
 
+@ratelimit(key='get:q', rate='10/m')
+@ratelimit(key='post:q', rate='10/m')
 def search(request):
     search_query = request.GET.get('query')
     blogs = Post.objects.filter(

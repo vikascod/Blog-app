@@ -28,9 +28,8 @@ class Profile(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images', null=True, blank=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     body = RichTextField(blank=True, null=True)
-    # body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=200, default='Artical')
     likes = models.ManyToManyField(User, related_name='blog_post')

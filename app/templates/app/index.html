@@ -6,7 +6,7 @@
 {% block content %}
 <h1 class="text-center">Blogs</h1>
 
-{% for post in object_list %}
+{% for post in blogs %}
 <div class="card mt-4">
     <div class="card-header">
         <a href="{% url 'detail' post.pk %}"><strong>{{ post.author }}</strong></a> - {{ post.created_on }}
@@ -19,7 +19,7 @@
         <p>No Image</p>
       {% endif %}
       
-      <p class="card-text">{{ post.body|slice:":200"|safe }}</p>
+      <p class="card-text">{{ post.body|slice:":100"|safe }}</p>
       <a href="{% url 'detail' post.pk %}" class="btn btn-success btn-sm">View ...</a>
     </div>
 </div>
