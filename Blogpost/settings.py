@@ -27,7 +27,7 @@ SECRET_KEY = secet_key()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
 
 # Application definition
@@ -155,6 +155,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = (BASE_DIR / 'staticfiles_build', 'static')
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
