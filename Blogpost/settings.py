@@ -91,8 +91,8 @@ else:
     DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ecommerce1',
-        'USER': 'vikk',
+        'NAME': 'blogDB',
+        'USER': 'vikas',
         'PASSWORD': 'Mohangarden',
         'HOST': 'localhost',
         'PORT': '',
@@ -157,7 +157,7 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-STATIC_ROOT = (BASE_DIR / 'staticfiles_build', 'static')
+STATIC_ROOT = (BASE_DIR / 'static')
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
