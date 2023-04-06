@@ -4,6 +4,8 @@ ENV PYTHONBUFFERED=1
 
 WORKDIR /Blog
 
+ENV REDIS_URL=redis://0.0.0.0:6379/1
+
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
