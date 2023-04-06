@@ -4,7 +4,7 @@ ENV PYTHONBUFFERED=1
 
 WORKDIR /Blog
 
-ENV REDIS_URL=redis://0.0.0.0:6379/1
+ENV REDIS_URL=redis://redis:6379/1
 
 COPY requirements.txt .
 
