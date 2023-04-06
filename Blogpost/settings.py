@@ -105,15 +105,15 @@ else:
 CACHE_TTL = 60
 
 CACHES = {
-    'default':{
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONAL": {
-            "CLIENT_CLASS" : "django_redis.cache.DefaultClient"
+    "default":{
+        "BACKEND":"django_redis.cache.RedisCache",
+        "LOCATION":"redis://127.0.0.1:6379/",
+        "OPTIONAL":{
+            "CLIENT_CLASS":"django_redis.cache.DefaultClient"
         },
-        "KEY_PREFIX": "exaple"
+        "KEY_PREFIX":"exaple"
     }
-}   
+}
 
 
 # Password validation
@@ -151,14 +151,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 #set default user pic
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles'), ]
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# STATICFILES = (BASE_DIR / 'static',)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
