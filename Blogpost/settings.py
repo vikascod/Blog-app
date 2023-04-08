@@ -107,7 +107,7 @@ CACHE_TTL = 60
 CACHES = {
     "default":{
         "BACKEND":"django_redis.cache.RedisCache",
-        "LOCATION":"redis://127.0.0.1:6379/",
+        "LOCATION":"redis-cli -u redis://default:UyKbsk3noBII95dpSILZ4GKhhh5kwD4k@redis-11988.c84.us-east-1-2.ec2.cloud.redislabs.com:11988",
         "OPTIONAL":{
             "CLIENT_CLASS":"django_redis.cache.DefaultClient"
         },
