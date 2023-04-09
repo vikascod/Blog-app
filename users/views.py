@@ -45,6 +45,13 @@ class EditProfileview(LoginRequiredMixin, UpdateView):
 class ShowProfileView(LoginRequiredMixin, DetailView):
     model = Profile
     template_name = 'registration/user_profile.html'
+    login_url = 'login'
+
+    # def dispatch(self, request, *args, **kwargs):
+    #     if not self.request.user.is_authenticated:
+    #         # If the user is not authenticated, redirect to login page
+    #         return self.handle_no_permission()
+    #     return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super(ShowProfileView, self).get_context_data(*args, **kwargs)

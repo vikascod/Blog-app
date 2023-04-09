@@ -56,7 +56,7 @@ class ProfileEditForm(UserChangeForm):
     username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'class':'form-control'}))
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'class':'form-control'}))
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'class':'form-control'}))
-    email = forms.CharField(label='Email', widget=forms.EmailInput(attrs={'class':'form-control'}))
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')

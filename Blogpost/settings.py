@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from django.utils.crypto import get_random_string
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,9 +28,9 @@ chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = get_random_string(50, chars)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ["128.199.16.221"]
+ALLOWED_HOSTS = ["128.199.16.221", "*"]
 
 
 # Application definition
@@ -93,7 +94,7 @@ else:
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'blogdb',
         'USER': 'vikas',
-        'PASSWORD': 'Mohangarden',
+        'PASSWORD': config('PASSWORD'),
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -107,7 +108,7 @@ CACHE_TTL = 60
 CACHES = {
     "default":{
         "BACKEND":"django_redis.cache.RedisCache",
-        "LOCATION":"redis://default:UyKbsk3noBII95dpSILZ4GKhhh5kwD4k@redis-11988.c84.us-east-1-2.ec2.cloud.redislabs.com:11988",
+        "LOCATION":config('LOCATION'),
         "OPTIONAL":{
             "CLIENT_CLASS":"django_redis.cache.DefaultClient"
         },
