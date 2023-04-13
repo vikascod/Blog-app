@@ -1,5 +1,7 @@
 FROM python:3
 
+ENV PYTHONBUFFERED=1
+
 WORKDIR /Blog
 
 
