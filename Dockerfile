@@ -1,4 +1,4 @@
-FROM Python:3.10.10
+FROM Python:3
 
 ENV PYTHONBUFFERED=1
 

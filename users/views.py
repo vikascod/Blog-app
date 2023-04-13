@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.http.response import HttpResponse
+from captcha.fields import CaptchaField
 
 
 from django_ratelimit.decorators import ratelimit
@@ -80,7 +81,6 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('index')
 
     #this func helps to return data
-    @ratelimit(key='post:q', rate='2/m')
     def get_object(self):
         return self.request.user
 
@@ -102,12 +102,19 @@ def login_view(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('home')
-        
-        
-    return render(request, 'registration/login.html')
 
-        
+        if user:
+            if request.POST.get('captcha'):
+                captcha = request.POST.get('captcha')
+                if captcha == request.session.get('captcha'):
+                    login(request, user)
+                    return redirect('home')
+            else:
+                return HttpResponse("Invalid CAPTCHA")
+                
+    captcha = CaptchaField()
+    request.session['captcha'] = captcha.generate_key()
+    
+    return render(request, 'registration/login.html', {'captcha': captcha})
+ 
 

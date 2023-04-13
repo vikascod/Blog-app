@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'app',
     'users',
     'ckeditor',
+    'captcha',
+
 ]
 
 MIDDLEWARE = [
