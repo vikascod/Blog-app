@@ -30,7 +30,7 @@ SECRET_KEY = get_random_string(50, chars)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ["128.199.16.221", "*"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
