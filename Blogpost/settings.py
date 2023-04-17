@@ -93,36 +93,36 @@ if DEBUG:
         }
     }
 else:
-    POSTGRES_DB = config('POSTGRES_DB')
-    POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
-    POSTGRES_USER = config('POSTGRES_USER')
-    POSTGRES_HOST = config('POSTGRES_HOST')
-    POSTGRES_PORT = config('POSTGRES_PORT')
-    print(POSTGRES_DB)
-    print(POSTGRES_PASSWORD)
-    print(POSTGRES_USER)
-    print(POSTGRES_HOST)
-    print(POSTGRES_PORT)
+    # POSTGRES_DB = config('POSTGRES_DB')
+    # POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
+    # POSTGRES_USER = config('POSTGRES_USER')
+    # POSTGRES_HOST = config('POSTGRES_HOST')
+    # POSTGRES_PORT = config('POSTGRES_PORT')
+    
 
-    POSTGRES_READY = (
-        POSTGRES_DB is not None
-        and POSTGRES_PASSWORD is not None
-        and POSTGRES_USER is not None
-        and POSTGRES_HOST is not None
-        and POSTGRES_PORT is not None
-    )
-
-    if POSTGRES_READY:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": POSTGRES_DB,
-                "USER": POSTGRES_USER,
-                "PASSWORD": POSTGRES_PASSWORD,
-                "HOST": POSTGRES_HOST,
-                "PORT": POSTGRES_PORT,
-            }
+    # POSTGRES_READY = (
+    #     POSTGRES_DB is not None
+    #     and POSTGRES_PASSWORD is not None
+    #     and POSTGRES_USER is not None
+    #     and POSTGRES_HOST is not None
+    #     and POSTGRES_PORT is not None
+    # )
+    # print(POSTGRES_DB)
+    # print(POSTGRES_PASSWORD)
+    # print(POSTGRES_USER)
+    # print(POSTGRES_HOST)
+    # print(POSTGRES_PORT)
+    # if POSTGRES_READY:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "blogdb",
+            "USER": "vikas",
+            "PASSWORD": "Mohangarden",
+            "HOST": "localhost",
+            "PORT": "",
         }
+    }
 
 
 
