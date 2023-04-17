@@ -115,7 +115,7 @@ else:
     # if POSTGRES_READY:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql",
+            "ENGINE": "django.db.backends.postgresql_psycopg2",
             "NAME": "blogdb",
             "USER": "vikas",
             "PASSWORD": "Mohangarden",
