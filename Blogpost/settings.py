@@ -27,8 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('DJANGO_SECRET_KEY', "HIDGHSIoydogodghodhooh98w94tcBIUt&65$%^")
 print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
-print(DEBUG)
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "68.183.83.24"]
 
