@@ -85,39 +85,39 @@ WSGI_APPLICATION = 'Blogpost.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-POSTGRES_DB = config('POSTGRES_DB')
-POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
-POSTGRES_USER = config('POSTGRES_USER')
-POSTGRES_HOST = config('POSTGRES_HOST')
-POSTGRES_PORT = config('POSTGRES_PORT')
-
-POSTGRES_READY = (
-    POSTGRES_DB is not None
-    and POSTGRES_PASSWORD is not None
-    and POSTGRES_USER is not None
-    and POSTGRES_HOST is not None
-    and POSTGRES_PORT is not None
-)
-
-if POSTGRES_READY:
+if DEBUG:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": POSTGRES_DB,
-            "USER": POSTGRES_USER,
-            "PASSWORD": POSTGRES_PASSWORD,
-            "HOST": POSTGRES_HOST,
-            "PORT": POSTGRES_PORT,
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+else:
+    POSTGRES_DB = config('POSTGRES_DB')
+    POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
+    POSTGRES_USER = config('POSTGRES_USER')
+    POSTGRES_HOST = config('POSTGRES_HOST')
+    POSTGRES_PORT = config('POSTGRES_PORT')
+
+    POSTGRES_READY = (
+        POSTGRES_DB is not None
+        and POSTGRES_PASSWORD is not None
+        and POSTGRES_USER is not None
+        and POSTGRES_HOST is not None
+        and POSTGRES_PORT is not None
+    )
+
+    if POSTGRES_READY:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": POSTGRES_DB,
+                "USER": POSTGRES_USER,
+                "PASSWORD": POSTGRES_PASSWORD,
+                "HOST": POSTGRES_HOST,
+                "PORT": POSTGRES_PORT,
+            }
+        }
 
 
 
