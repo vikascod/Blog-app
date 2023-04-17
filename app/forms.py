@@ -1,7 +1,7 @@
 from django import forms
 from app.models import Post, Category, Comment
 
-categories = [('Artical', 'Artical'), ('Sports', 'Sports'), ('Entertenment', 'Entertenment')]
+categories = [('Artical', 'Artical'), ('Sports', 'Sports'), ('Entertenment', 'Entertenment'), ('Technology', 'Technology'), ('Business', 'Business'), ('Travel', 'Travel'), ('Education', 'Education'), ('Food and Drinks', 'Food and Drinks'), ('Biography', 'Biography')]
 
 
 class PostForm(forms.ModelForm):

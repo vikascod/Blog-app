@@ -24,15 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'jcovuheugoh%#ttdG%6e60wG')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get('DEBUG'))=="1"
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 if not DEBUG:
-    ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOST')]
+    ALLOWED_HOSTS += [config('DJANGO_ALLOWED_HOST')]
 
 
 # Application definition
@@ -93,11 +93,11 @@ DATABASES = {
     }
 }
 
-POSTGRES_DB = os.environ.get("POSTGRES_DB")
-POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD")
-POSTGRES_USER = os.environ.get("POSTGRES_USER")
-POSTGRES_HOST = os.environ.get("POSTGRES_HOST")
-POSTGRES_PORT = os.environ.get("POSTGRES_PORT")
+POSTGRES_DB = config('POSTGRES_DB')
+POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
+POSTGRES_USER = config('POSTGRES_USER')
+POSTGRES_HOST = config('POSTGRES_HOST')
+POSTGRES_PORT = config('POSTGRES_PORT')
 
 POSTGRES_READY = (
     POSTGRES_DB is not None
