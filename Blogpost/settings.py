@@ -98,6 +98,11 @@ else:
     POSTGRES_USER = config('POSTGRES_USER')
     POSTGRES_HOST = config('POSTGRES_HOST')
     POSTGRES_PORT = config('POSTGRES_PORT')
+    print(POSTGRES_DB)
+    print(POSTGRES_PASSWORD)
+    print(POSTGRES_USER)
+    print(POSTGRES_HOST)
+    print(POSTGRES_PORT)
 
     POSTGRES_READY = (
         POSTGRES_DB is not None
