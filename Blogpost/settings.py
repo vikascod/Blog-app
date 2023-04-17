@@ -25,14 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', "HIDGHSIoydogodghodhooh98w94tcBIUt&65$%^")
-
+print(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
+print(DEBUG)
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "68.183.83.24"]
-
-if not DEBUG:
-    ALLOWED_HOSTS += [config('DJANGO_ALLOWED_HOST')]
 
 
 # Application definition
@@ -85,14 +83,14 @@ WSGI_APPLICATION = 'Blogpost.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+# else:
     # POSTGRES_DB = config('POSTGRES_DB')
     # POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
     # POSTGRES_USER = config('POSTGRES_USER')
@@ -113,16 +111,16 @@ else:
     # print(POSTGRES_HOST)
     # print(POSTGRES_PORT)
     # if POSTGRES_READY:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
-            "NAME": "blogdb",
-            "USER": "vikas",
-            "PASSWORD": "Mohangarden",
-            "HOST": "localhost",
-            "PORT": "",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "blogdb",
+        "USER": "vikas",
+        "PASSWORD": "Mohangarden",
+        "HOST": "localhost",
+        "PORT": "",
     }
+}
 
 
 
@@ -132,7 +130,7 @@ CACHE_TTL = 60
 CACHES = {
     "default":{
         "BACKEND":"django_redis.cache.RedisCache",
-        "LOCATION":config('LOCATION'),
+        "LOCATION":"redis://default:UyKbsk3noBII95dpSILZ4GKhhh5kwD4k@redis-11988.c84.us-east-1-2.ec2.cloud.redislabs.com:11988",
         "OPTIONAL":{
             "CLIENT_CLASS":"django_redis.cache.DefaultClient"
         },
