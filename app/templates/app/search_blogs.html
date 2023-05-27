@@ -2,8 +2,58 @@
 
 {% block title %} Home {% endblock %}
 
-
 {% block content %}
+<style>
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+
+  .card-header {
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .card-text {
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border-color: #6c757d;
+  }
+
+  .btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+  }
+</style>
+
 <h1 class="text-center">Blogs</h1>
 
 {% for blog in blogs %}
@@ -24,9 +74,4 @@
     </div>
 </div>
 {% endfor %}
-
-
-
 {% endblock %}
-
-

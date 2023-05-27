@@ -1,8 +1,54 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
-    <h1 class="text-center">Register</h1>
-    <hr>
+<style>
+    body {
+        background-color: #000;
+        color: #fff;
+    }
+
+    h1 {
+        text-align: center;
+        color: #ff6f00;
+    }
+
+    hr {
+        border-color: #ff6f00;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #ff6f00;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        background-color: #f7e9e9;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    input[type="submit"] {
+        background-color: #ff6f00;
+        color: #ece7e7;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+
+</style>
+
+<h1 class="text-center">Register</h1>
+<hr>
 <div class="form-group">
     <form action="" method="post">
         {% csrf_token %}

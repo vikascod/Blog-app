@@ -1,23 +1,71 @@
 {% extends 'app/base.html' %}
 
 {% block content %}
+<style>
+  .delete-post-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-{% if user.is_authenticated %}
-{% if user.id == post.author.id %}
-    <h1 class="text-center">Delete Post </h1>
-    <hr>
-    <h3>Delete : {{ post.title }}</h3>
-<div class="form-group">
-    <form action="" method="post">
-        {% csrf_token %}
-        <h6>Are you sure?</h6>
-        <input type="submit" class="btn btn-warning" value="Delete">
-    </form>
+  .text-center {
+    text-align: center;
+  }
+
+  hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .form-group {
+    margin-top: 20px;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .btn-warning {
+    color: #fff;
+    background-color: #ffc107;
+    border-color: #ffc107;
+  }
+
+  .not-authorized-text {
+    color: #dc3545;
+    text-align: center;
+    margin-top: 20px;
+  }
+</style>
+
+<div class="container">
+  <div class="delete-post-container">
+    {% if user.is_authenticated %}
+      {% if user.id == post.author.id %}
+        <h1 class="text-center">Delete Post</h1>
+        <hr>
+        <h3>Delete: {{ post.title }}</h3>
+        <div class="form-group">
+          <form action="" method="post">
+            {% csrf_token %}
+            <h6>Are you sure you want to delete this post?</h6>
+            <input type="submit" class="btn btn-warning" value="Delete">
+          </form>
+        </div>
+      {% else %}
+        <h3 class="not-authorized-text">Not authorized to perform actions</h3>
+      {% endif %}
+    {% else %}
+      <h3 class="not-authorized-text">Not authorized to perform actions</h3>
+    {% endif %}
+  </div>
 </div>
-{% else %}
-<h3>Not authorized to perform actions</h3>
-{% endif %}
-{% else %}
-<h3>Not authorized to perform actions</h3>
-{% endif %}
 {% endblock %}

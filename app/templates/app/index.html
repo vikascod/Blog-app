@@ -2,31 +2,35 @@
 
 {% block title %} Home {% endblock %}
 
-
 {% block content %}
-<h1 class="text-center">Blogs</h1>
+<div class="container">
+  <h1 class="text-center mt-4 blog-heading">Blogs</h1>
 
-{% for post in blogs %}
-<div class="card mt-4">
-    <div class="card-header">
-        <a href="{% url 'detail' post.pk %}"><strong>{{ post.author }}</strong></a> - {{ post.created_on }}
+  <div class="row">
+    {% for post in blogs %}
+    <div class="col-md-6">
+      <div class="card mt-4 blog-card">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="card-img-top" alt="Post Image">
+        {% else %}
+        <div class="no-image-placeholder">
+          <i class="fas fa-image"></i>
+        </div>
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title blog-title">{{ post.title }}</h5>
+          <p class="card-text blog-description">{{ post.body|slice:":100"|safe }}</p>
+          <a href="{% url 'detail' post.pk %}" class="btn btn-primary btn-read-more">Read More</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">
+            <i class="far fa-user"></i> {{ post.author }} &nbsp;|&nbsp; <i class="far fa-calendar-alt"></i>
+            {{ post.created_on }}
+          </small>
+        </div>
+      </div>
     </div>
-    <div class="card-body">
-      <h6 class="card-title"><strong>{{ post.title }}</strong></h6> <br>
-      {% if post.image %}
-        <img src="{{ post.image.url }}" alt="" width="150" height="200">
-      {% else %} 
-        <p>No Image</p>
-      {% endif %}
-      
-      <p class="card-text">{{ post.body|slice:":100"|safe }}</p>
-      <a href="{% url 'detail' post.pk %}" class="btn btn-success btn-sm">View ...</a>
-    </div>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %}
-
-
-
 {% endblock %}
-
-

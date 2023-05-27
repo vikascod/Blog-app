@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = config('DJANGO_SECRET_KEY', "HIDGHSIoydogodghodhooh98w94tcBIUt&65$%^")
-print(SECRET_KEY)
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -82,44 +82,24 @@ WSGI_APPLICATION = 'Blogpost.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
-    # POSTGRES_DB = config('POSTGRES_DB')
-    # POSTGRES_PASSWORD = config('POSTGRES_PASSWORD')
-    # POSTGRES_USER = config('POSTGRES_USER')
-    # POSTGRES_HOST = config('POSTGRES_HOST')
-    # POSTGRES_PORT = config('POSTGRES_PORT')
-    
 
-    # POSTGRES_READY = (
-    #     POSTGRES_DB is not None
-    #     and POSTGRES_PASSWORD is not None
-    #     and POSTGRES_USER is not None
-    #     and POSTGRES_HOST is not None
-    #     and POSTGRES_PORT is not None
-    # )
-    # print(POSTGRES_DB)
-    # print(POSTGRES_PASSWORD)
-    # print(POSTGRES_USER)
-    # print(POSTGRES_HOST)
-    # print(POSTGRES_PORT)
-    # if POSTGRES_READY:
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "blogdb",
-        "USER": "vikas",
-        "PASSWORD": "Mohangarden",
-        "HOST": "localhost",
-        "PORT": "",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": config("DATABASE"),
+#         "USER": config("USER"),
+#         "PASSWORD": config("PASSWORD"),
+#         "HOST": config("HOST"),
+#         "PORT": "",
+#     }
+# }
 
 
 

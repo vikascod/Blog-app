@@ -2,16 +2,57 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="text-center">{{ profile_user.user.username }} Profile</h1>
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        overflow: hidden;
+        background-color: #fff;
+    }
 
-    
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card-text {
+        margin-bottom: 20px;
+        line-height: 1.5;
+        color: #666;
+    }
+
+    .card img {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .small.text-muted a {
+        margin-right: 10px;
+        color: #888;
+        text-decoration: none;
+    }
+</style>
+
+<h1 class="text-center">{{ profile_user.user.username }} Profile</h1>
+
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-2">
             {% if profile_user.profile_pic %}
-                <img src="{{ profile_user.profile_pic.url }}" class="img-fluid rounded-start" alt="..." />
+                <img src="{{ profile_user.profile_pic.url }}" class="img-fluid rounded-start" alt="Profile Picture" />
             {% else %}
-                <img src="{% static 'images/user1.png' %}" class="img-fluid rounded-start" alt="..." />
+                <img src="{% static 'images/user1.png' %}" class="img-fluid rounded-start" alt="Profile Picture" />
             {% endif %}
         </div>
         <div class="col-md-8">
@@ -22,18 +63,17 @@
                 <p class="card-text">{{ profile_user.bio }}</p>
                 <p class="card-text">
                     <small class="small text-muted">
-                        
                         {% if profile_user.facebook_url %}
                             <a href="{{ profile_user.facebook_url }}">Facebook</a> 
                         {% endif %}
                         {% if profile_user.insta_url %}
-                            | <a href="{{ profile_user.insta_url }}">Instagram</a> 
+                            <a href="{{ profile_user.insta_url }}">Instagram</a> 
                         {% endif %}
                         {% if profile_user.linkedin_url %}
-                            | <a href="{{ profile_user.linkedin_url }}">LinkedIn</a> 
+                            <a href="{{ profile_user.linkedin_url }}">LinkedIn</a> 
                         {% endif %}
                         {% if profile_user.github_url %}
-                            | <a href="{{ profile_user.github_url }}">Github</a>
+                            <a href="{{ profile_user.github_url }}">Github</a>
                         {% endif %}
                     </small>
                 </p>
@@ -41,6 +81,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}
