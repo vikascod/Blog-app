@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/blog-django
+    ports:
+      - 8000:8000
+    image: app:blog-django
+    container_name: blog_django
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
