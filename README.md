@@ -1,21 +1,41 @@
 # Blog-app
 
+This is a web application built using Django that allows users to create, edit, and delete blog posts. Users can register for an account, login, and perform various actions such as searching for blogs, commenting, liking posts, and sharing on social media platforms.
+
 Features
+User Registration: Users can create a new account using a valid email ID and password.
+User Login: Registered users can login with their email ID and password.
+Blog Creation: Users can create new blog posts with a title, content, and optional tags.
+Blog Editing: Users can edit their blog posts after they have been created.
+Blog Deletion: Users can delete their own blog posts.
+Blog Search: Users can search for blogs based on keywords, tags, and other relevant criteria.
+Commenting: Users can leave comments on blog posts, including the option to attach images or files.
+Sharing: Users can share blog posts on social media platforms.
+Like: Users can like blog posts.
 
-User Registration: The web application should allow users to register by creating a new account using a valid email ID and password.
+1. Clone the repository:
 
-User Login: Registered users should be able to login with their email ID and password.
+   ```bash
+   git clone https://github.com/vikascod/Blog-app.git
 
-Blog Creation: The web application should allow users to create new blog posts, with a title, content, and optional tags.
+  ```bash
+    python -m venv venv
+    source venv/bin/activate
 
-Blog Editing: Users should be able to edit their blog posts after they have been created.
 
-Blog Deletion: Users should be able to delete their blog posts.
+2. Install the project dependencies:
 
-Blog Search: The web application should allow users to search for blogs based on keywords, tags, and other relevant criteria.
+   ```bash
+   pip install -r requirements.txt
 
-Commenting: The web application should allow users to comment on blog posts, with the option of attaching images or files.
+3. Run database migrations:
 
-Sharing: Users should be able to share blog posts on social media platforms.
+   ```bash
+   python manage.py migrate
 
-Like: Users can like on a post.
+4. Start the development server:
+
+   ```bash
+   python manage.py runserver
+
+Access the application in your web browser at http://localhost:8000.
