@@ -2,24 +2,25 @@
 
 This is a web application built using Django that allows users to create, edit, and delete blog posts. Users can register for an account, login, and perform various actions such as searching for blogs, commenting, liking posts, and sharing on social media platforms.
 
-Features
-User Registration: Users can create a new account using a valid email ID and password.
+## Features
 
-User Login: Registered users can login with their email ID and password.
+- User Registration: Users can create a new account using a valid email ID and password.
 
-Blog Creation: Users can create new blog posts with a title, content, and optional tags.
+- User Login: Registered users can login with their email ID and password.
 
-Blog Editing: Users can edit their blog posts after they have been created.
+- Blog Creation: Users can create new blog posts with a title, content, and optional tags.
 
-Blog Deletion: Users can delete their own blog posts.
+- Blog Editing: Users can edit their blog posts after they have been created.
 
-Blog Search: Users can search for blogs based on keywords, tags, and other relevant criteria.
+- Blog Deletion: Users can delete their own blog posts.
 
-Commenting: Users can leave comments on blog posts, including the option to attach images or files.
+- Blog Search: Users can search for blogs based on keywords, tags, and other relevant criteria.
 
-Sharing: Users can share blog posts on social media platforms.
+- Commenting: Users can leave comments on blog posts, including the option to attach images or files.
 
-Like: Users can like blog posts.
+- Sharing: Users can share blog posts on social media platforms.
+
+- Like: Users can like blog posts.
 
 1. Clone the repository:
 
